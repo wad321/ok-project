@@ -4,30 +4,31 @@ import sys
 
 def generate_towns(mx, my, count):
 	towns = []
-	
+
 	for i in range(0, count):
 		x = random.random() * mx
 		y = random.random() * my
 		
-		towns += (x,y)
-		
+		towns.append((x,y))
+	
 	return towns
 	
 def write_file(name, towns):
 	f = open(name, "w")
-	
-	f.write(len(towns) + '\n')
+	f.write(str(len(towns)) + '\n')
 	
 	for i in towns:
-		f.write(i[0] + ' ' + i[1] +'\n')
+		f.write(str(i[0]) + ' ' + str(i[1]) + '\n')
 	
 	f.close()
 	
 def main():
-	f = sys.stdin.split(' ')
-	
-	l = generate_towns(f[0], f[1], f[2])
+	f = sys.stdin.readline()
+	f = f.split(' ')
+
+	l = generate_towns(int(f[0]), int(f[1]), int(f[2]))
 	write_file(f[3], l)
 	
 if __name__ == "__main__":
+	random.seed()
 	main()
