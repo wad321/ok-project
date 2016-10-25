@@ -1,5 +1,4 @@
 import random
-import os
 import sys
 
 def generate_towns(mx, my, count):
@@ -23,11 +22,11 @@ def write_file(name, towns):
 	f.close()
 	
 def main():
-	f = sys.stdin.readline()
-	f = f.split(' ')
-
-	l = generate_towns(int(f[0]), int(f[1]), int(f[2]))
-	write_file(f[3], l)
+    	if len(sys.argv) < 5:
+        	sys.exit("Not enough params! usage: max_x max_y count out_file_name")
+		
+   	l = generate_towns(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+    	write_file(sys.argv[4], l)
 	
 if __name__ == "__main__":
 	random.seed()
